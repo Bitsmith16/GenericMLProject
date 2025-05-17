@@ -1,3 +1,4 @@
+# Will take the Data
 import os
 import sys
 from src.exception import CustomException
@@ -6,8 +7,12 @@ from src.logger import logging
 import pandas as pd 
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
+
 from src.components.data_transformation import DataTransformation
 from src.components.data_transformation import Data_transformation_config
+
+from src.components.model_trainer import ModelTrainer
+from src.components.model_trainer import ModelTrainerConfig
 
 
 @dataclass
@@ -53,7 +58,11 @@ if __name__=="__main__":
     train_data,test_data= obj.initiate_data_initiation() ## Data Ingestion return Train & Test Data
 
     obj2 = DataTransformation() # creating object of DataTransformation class so call in next line initiate_data_transformation function
-    obj2.initiate_data_transformation(train_data,test_data)
+    train_array,test_array,preprocessor_path = obj2.initiate_data_transformation(train_data,test_data) # initiate_data_transformation from dataTransformation class return 3 values which we are storing on left side variable train_array,test_array,preprocessor_path
+
+    obj3 = ModelTrainer()
+    r2_score,best_model=obj3.initiate_model_trainer(train_array,test_array,preprocessor_path) # though we are not using preprocessor_path parameter in function 
+    print(best_model , r2_score)  # printing r2 score that the function has returned in above line
 
 
 

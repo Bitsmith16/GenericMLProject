@@ -1,4 +1,4 @@
-## Do the Feature Engineering , Data Cleaning
+## Do the Feature Engineering , Data Cleaning (Transforming Data)
 
 import sys
 import os
@@ -100,7 +100,7 @@ class DataTransformation:
             save_object( # Funtion define in Utill , calling that function in order to save Pickle file passing below 2 parameter
 
                 file_path=self.data_transformation_config.preprocessor_obj_file_path,
-                object=preprocessing_obj
+                object=preprocessing_obj  # Saving Transformed data as pickel file under Artifcat folder with name preprocessor.pkl
 
             )
 
